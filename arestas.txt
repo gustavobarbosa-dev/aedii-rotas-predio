@@ -1,0 +1,65 @@
+# @unisenac - arestas.txt
+# Formato de cada linha: PORTA_A PORTA_B PESO (peso = distancia so entre as duas, em PASSOS)
+# Linhas em branco e linhas comecando com "#" sao ignoradas pelo grafo.py (ver carregar_grafo)
+#
+# ATENCAO (Gustavo): leitura em cima do mapaV2.drawio.png (com pesos). A
+# maioria dos pesos veio direto do diagrama. Os poucos trechos que o
+# diagrama nao tinha numero estao marcados "# CONFERIR" com peso 1 de
+# estimativa - confere esses antes de subir pro repositorio.
+
+# --- corredor principal: LABTECH -> 201 -> ... -> 205 ---
+LABTECH 201 6
+201 202 7
+202 203 13
+203 BANHEIROF 10
+BANHEIROF BANHEIROM 9
+BANHEIROM 204 10
+204 205 9
+
+# --- mezanino de cima: corte de cabelo / copa / massagista / apoio / 102 ---
+CORTEDECABELO COPA 8
+COPA MASSAGISTA 10
+COPA APOIO 4
+MASSAGISTA 102 5
+102 205 20
+
+# --- cantina (2 portas) ---
+PORTA1CANTINA PORTA2CANTINA 9
+PORTA1CANTINA LIDERANCA 15
+PATIO1 PORTA2CANTINA 33
+
+# --- ala secretaria/lideranca/S-N  x  pedagogico/coordenacao/direcao/professores ---
+LIDERANCA COORDENACAO 2
+SECRETARIA PEDAGOGICO 11
+SN1 DIRECAO 4
+SN1 PROFESSORES 5
+# o "corredor" vertical entre essas portas nao tinha peso no diagrama;
+# por pedido do Gustavo, assumido o DOBRO do peso cruzado da mesma linha
+# (SECRETARIA-PEDAGOGICO=11 -> 22 / LIDERANCA-COORDENACAO=2 -> 4 / SN1-DIRECAO=4 -> 8)
+SECRETARIA LIDERANCA 22
+LIDERANCA SN1 4
+PEDAGOGICO COORDENACAO 22
+COORDENACAO DIRECAO 4
+DIRECAO PROFESSORES 8
+
+# --- saida / recepcao / admin / patio1 ---
+SAIDA RECEPCAO 14
+RECEPCAO ADMIN 7
+ADMIN PATIO1 17
+LABTECH PATIO1 17
+
+# --- patio1 -> patio3 -> biblioteca/sala1/sala2 , patio1 -> 210 ---
+PATIO1 PATIO3 37
+PATIO1 210 53
+PATIO3 BIBLIOTECA 15
+PATIO3 SALA2 30
+BIBLIOTECA SALA2 5
+SALA2 SALA1 3
+
+# --- 210 / 209 / idiomas / 208 / 207 / 206 (ciclo) ---
+210 209 6
+209 IDIOMAS 5
+IDIOMAS 208 8
+210 208 13
+208 207 8
+207 206 9

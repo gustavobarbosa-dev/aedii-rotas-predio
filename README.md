@@ -3,7 +3,7 @@
 ## Integrantes
 - Gustavo Barbosa
 - Ryan Garcia
-- Giuli
+- Giulianna Pereira
 
 ## Unidade do peso
 As distâncias foram medidas em **passos** (contados porta a porta, sem

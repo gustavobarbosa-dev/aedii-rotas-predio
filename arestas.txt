@@ -51,10 +51,13 @@ LABTECH PATIO1 17
 # --- patio1 -> patio3 -> biblioteca/sala1/sala2 , patio1 -> 210 ---
 PATIO1 PATIO3 37
 PATIO1 210 53
-PATIO3 BIBLIOTECA 15
-PATIO3 SALA2 30
+PATIO3 BIBLIOTECA 30
 BIBLIOTECA SALA2 5
 SALA2 SALA1 3
+
+# --- a porta da biblioteca (a mesma porta que da acesso ao patio3) tem
+# tambem ligacao direta com a sala dos professores ---
+PROFESSORES BIBLIOTECA 15
 
 # --- 210 / 209 / idiomas / 208 / 207 / 206 (ciclo) ---
 210 209 6

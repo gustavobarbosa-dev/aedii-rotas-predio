@@ -34,19 +34,23 @@ uvicorn api:app --reload
 ## Tarefa obrigatória — par onde BFS e Dijkstra discordam
 
 Rodando `python3 buscas.py`, a função `encontrar_par_divergente` achou
-o par **LABTECH → SALA2**:
+o par **LABTECH → DIRECAO**:
 
-- **BFS**: `LABTECH → PATIO1 → PATIO3 → SALA2`, custo **84** (3 arestas).
-- **Dijkstra**: `LABTECH → PATIO1 → PATIO3 → BIBLIOTECA → SALA2`, custo **74** (4 arestas).
+- **BFS**: `LABTECH → PATIO1 → PATIO3 → BIBLIOTECA → PROFESSORES → DIRECAO`,
+  custo **107** (5 arestas).
+- **Dijkstra**: `LABTECH → PATIO1 → PORTA2CANTINA → PORTA1CANTINA → LIDERANCA → COORDENACAO → DIRECAO`,
+  custo **80** (6 arestas).
 
-**Por quê:** existe um ciclo `PATIO3 ↔ BIBLIOTECA ↔ SALA2 ↔ PATIO3`. A
-aresta direta `PATIO3–SALA2` tem só 1 aresta de distância (BFS ama isso:
-menos arestas = "mais perto"), mas pesa 30 passos. Já o caminho
-`PATIO3 → BIBLIOTECA → SALA2` tem 2 arestas, mas custa só 15+5=20 passos —
-menos do que a aresta direta. A BFS conta arestas e não enxerga peso,
-então fica com a direta (84 no total); o Dijkstra soma os pesos de
-verdade e acha o caminho mais barato (74), mesmo com uma porta a mais no
-meio.
+**Por quê:** a BFS só conta quantas portas (arestas) tem no caminho, não o
+quanto cada uma pesa. O caminho pela biblioteca (`PATIO1 → PATIO3 →
+BIBLIOTECA → PROFESSORES → DIRECAO`) tem uma aresta a menos (5 contra 6),
+então a BFS prefere ele — só que essas 5 arestas são bem pesadas
+(37+30+15+8 = 90, +17 do LABTECH–PATIO1 = 107 no total). Já o caminho
+pela cantina (`PATIO1 → PORTA2CANTINA → PORTA1CANTINA → LIDERANCA →
+COORDENACAO → DIRECAO`) tem uma porta a mais, mas todas as arestas são
+leves (33+9+15+2+4 = 63, +17 = 80 no total) — menos passos no fim. A
+Dijkstra soma os pesos de verdade e acha esse caminho mais barato (80),
+mesmo tendo mais portas no meio.
 
 ## Observações sobre pesos estimados
 
